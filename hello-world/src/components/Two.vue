@@ -16,12 +16,12 @@ export default defineComponent({
 	
 		const state = reactive({ nickname: "xiaofan", age: 26})
 
-		setTimeout(() => {
+		setInterval(() => {
 			state.age++;
 		}, 1000);
 
 		watch(
-			()=>state.age,
+			state.age,
 			(curAge,preAge)=>{
 				console.log(`newValue = ${curAge}----oldValue = ${preAge}`);
 			}
