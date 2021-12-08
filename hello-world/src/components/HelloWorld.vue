@@ -1,0 +1,47 @@
+<template>
+  <div class="homePage">
+    <p>第 {{ year }} 年</p>
+    <p>姓名： {{ nickname }}</p>
+    <p>年龄： {{ age }}</p>
+  </div>
+</template>
+
+
+
+<script>
+import {defineComponent,reactive,ref,toRefs} from "vue";
+export default defineComponent({
+	setup(){
+		const year = ref(0);
+		const user = reactive({ nickname: "xiaofan", age: 26, gender: "女"})
+
+		setInterval(() => {
+			year.value++;
+			user.age++;
+		}, 1000);
+
+		return {
+			year,
+			...toRefs(user)
+		}
+	}
+})
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+</style>
