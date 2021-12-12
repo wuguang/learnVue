@@ -1,11 +1,10 @@
 <template>
   <div class="homePage">
-    <p>第 {{ year }} 年</p>
+    <p>第 {{ age }} 年</p>
     <p>姓名： {{ nickname }}</p>
     <p>年龄： {{ age }}</p>
   </div>
 </template>
-
 
 
 <script>

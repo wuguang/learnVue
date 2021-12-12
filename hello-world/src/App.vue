@@ -1,17 +1,16 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <Two />
-  <Three />
+  <div>
+    <div id="app"></div>
+    <div id="dialog"></div>
+  </div>
 </template>
 
 <script>
-import Two from './components/Two.vue'
-import Three from './components/Three.vue'
+import Four from './components/Four.vue'
 export default {
   name: 'App',
   components: {
-    Two,
-    Three
+    Four
   }
 }
 </script>

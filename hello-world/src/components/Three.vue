@@ -8,29 +8,28 @@
 
 
 <script>
-
-import {defineComponent,watch,ref} from "vue";
+import { defineComponent, ref, reactive, toRefs, watchEffect } from "vue";
 export default defineComponent({
-	setup(){
-	
-		const year = ref(0);
+  setup() {
+    const state = reactive({ nickname: "xiaofan", age: 20 });
+    let year = ref(0)
 
-		setInterval(() => {
-			year.value++;
-		}, 1000);
+    setInterval(() =>{
+        state.age++
+        year.value++
+    },1000)
 
-		watch(year, (newVal, oldVal) => {
-			console.log("新值:", newVal, "老值:", oldVal);
-		});
+    watchEffect(() => {
+        console.log(state);
+        console.log(year);
+      }
+    );
 
-
-
-		return {
-			year
-		}
-	}
-})
-
+    return {
+        ...toRefs(state)
+    }
+  },
+});
 
 </script>
 
