@@ -1,27 +1,38 @@
 <template>
   <div> 
-    <p>count: {{ count }}</p>
-    <p>倍数： {{ multiple }}</p>
-    <div>
-      <button @click="increase()">加1</button>
-      <button @click="decrease()">减一</button>
-    </div>
+    <span>{{item.title}}</span>
+		<button  @click="remove(item.id)"> delete </button>
   </div>
 </template>
 
 <script>
-import useCount from '../hooks/useCount.ts'
-import { defineComponent } from "vue";
-export default defineComponent({
-  setup() {
-    const { count, multiple, increase, decrease } = useCount(10);
-	return {
-		count,
-		multiple,
-		increase,
-		decrease,
-	};
+import {onBeforeUnmount,onUnmounted} from "vue";
+export default {
+  name:'Four',
+  props:{
+    item:Object
+  },
+  emits:['remove'],
+
+  setup(props,ctx) {
+      const remove = (id)=>{
+        ctx.emit('remove',id);
+      }
+
+      onBeforeUnmount(()=>{
+
+        console.log(`onBeforeUnmount`);
+      })
+
+      onUnmounted(()=>{
+
+        console.log(`onUnmounted`);
+      })
+
+      return {
+        remove
+      }
   }
-});
+}
 
 </script>
