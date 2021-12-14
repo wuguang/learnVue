@@ -1,10 +1,13 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <Test :count="count" @plus="plus"/>
+  <div>
+	<h1>hello world~~~</h1>
+
+  </div>
 </template>
 
 <script>
-import {reactive,ref,toRefs} from 'vue';
+import {reactive,ref,toRefs,watchEffect,computed} from 'vue';
 import Test from './components/Test.vue';
 export default {
 	name: 'App',
@@ -14,15 +17,33 @@ export default {
 	emits:['plus'],
 	setup(props,ctx){
 
-		const count = ref(0);
-		const plus = (num)=>{
-			count.value += num;
-		}
+		
 
-		return {
-			count,
-			plus
-		}
+		const count = ref(0);
+
+		setTimeout(()=>{
+			count.value = 1;
+		},700);
+
+		setTimeout(()=>{
+			count.value = 2;
+		},1500);
+
+		const stop = watchEffect((onInvalidate)=>{
+			console.log(count.value);
+
+			onInvalidate(()=>{
+				console.log(`onInvalidate is triggered`);
+			})
+		});
+
+		setTimeout(()=>{
+			stop();
+			console.log('watchEffect is stopped');
+		},2000);
+
+		
+		
 
 	}
 }

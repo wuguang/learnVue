@@ -15,7 +15,7 @@ export default {
         const {ctx} = getCurrentInstance();
         const  {utils} = ctx;
 
-        console.log(utils.plus(1,2));
+       // console.log(utils.plus(1,2));
         /*
         const plus = ()=>{
             ctx.emit('plus',100)
